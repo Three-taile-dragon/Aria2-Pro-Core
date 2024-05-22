@@ -75,7 +75,13 @@ jobs:
       with:
         name: aria2-${{ matrix.PLATFORMS }}
         path: output
-
+        
+    - name: Upload assets
+      uses: softprops/action-gh-release@v1
+      with:
+        files: output/*
+        prerelease: false
+          
     - name: Functional Testing
       run: |
         ./aria2c https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat
